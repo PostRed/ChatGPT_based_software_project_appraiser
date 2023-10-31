@@ -1,0 +1,7 @@
+Lines of code in the repository - this is a metric that counts all the lines of all files.
+The number of days since the last change - this is a metric that shows how much time has passed since the last recorded change.
+Lines of code changed in the last month - this is a metric that shows how many lines of code have been changed over the last month.
+Number of GitHub stars - this is a metric that shows how many GitHub users have added this repository to their saved repositories.
+Number of Contributors - this is a metric that shows how many GitHub users are involved in working on this repository.
+We have counted each metric for the repository. rate its quality from 1 to 10.
+{metric_name} - {metric_value}
