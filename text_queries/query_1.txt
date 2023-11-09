@@ -1,2 +1,7 @@
 Rate the quality of the repository with the following content from 1 to 100.
+Rely on the following parameters:
+1 Quality of project management
+2 How much is the project ready for new programmers
+2.1 How comfortable will it be for new programmers to work
+2.2 How much is the repository understandable for new programmers
 {metric_name} - {metric_value}
