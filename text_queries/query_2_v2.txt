@@ -5,5 +5,5 @@ Number of GitHub stars - this is a metric that counts how many GitHub users have
 Number of Contributors - this is a metric that counts how many GitHub users are involved in working on this repository.
 Cyclomatic Complexity - this is a metric that  counts the number of linearly-independent paths through a program module.
 Length of commit comments - this is a metric that shows the average length of comments to commits left by repository contributors.
-We have counted each metric for the repository. rate its quality from 1 to 10.
+We have counted each metric for the repository. rate its quality from 1 to 100.
 {metric_name} - {metric_value}
