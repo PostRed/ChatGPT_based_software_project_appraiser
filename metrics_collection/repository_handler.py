@@ -34,7 +34,7 @@ class RepozitoryHandler:
         self.get_count_of_comment_lines(f"{self.api_link}{self.repozitory_name}/contents/")
         # self.cyclomatic_complexity = self.get_cyclomatic_complexity()
         self.count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
-        print(self.count_of_comment_lines)
+        print(self.cyclomatic_complexity)
 
     def get_info_from_github_api(self):
         result = requests.get(f'{self.api_link}{self.repozitory_name}', auth=self.auth)
@@ -114,7 +114,6 @@ class RepozitoryHandler:
                         lines = file_response.text.split('\n')
                         for line in lines:
                             if line.strip().startswith('#') or line.strip().startswith('//'):
-                                print(line)
                                 self.count_of_comment_lines += 1
                 if file["type"] == 'dir':
                     self.get_count_of_comment_lines(file['url'])
