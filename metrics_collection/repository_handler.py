@@ -1,64 +1,59 @@
 import requests
 from datetime import datetime
 
+
 class RepozitoryHandler:
     def __init__(self, repozitory_name: str, login: str, password: str):
         self.auth = (login, password)
         self.info = None
         self.total_lines = 0
+        self.number_of_days_since_last_change = 0
+        self.stars_count = 0
+        self.count_of_contributors = 0
+        self.forks_count = 0
+        self.count_of_open_issues = 0
+        self.count_of_closed_issue = 0
+        self.count_of_merged_pull_requests = 0
+        self.count_of_comment_lines = 0
+        self.cyclomatic_complexity = 0
+        self.count_of_commit_comment_lines = 0
         self.api_link = 'https://api.github.com/repos/'
         self.repozitory_name = repozitory_name
         self.get_info_from_github_api()
         self.calculate_metrics()
 
     def calculate_metrics(self):
-        self.get_count_of_lines(f'{self.api_link}{self.repozitory_name}')
-        number_of_days_since_last_change = self.get_number_of_days_since_last_change()
-        stars_count = self.get_stars_count()
-        count_of_contributors = self.get_count_of_contributors()
-        forks_count = self.get_forks_count()
-        count_of_open_issues = self.get_count_of_open_issues()
-        count_of_closed_issue = self.get_count_of_closed_issues()
-        count_of_merged_pull_requests = self.get_count_of_merged_pull_requests()
-
-        # count_of_comment_lines = self.get_count_of_comment_lines()
-        # cyclomatic_complexity = self.get_cyclomatic_complexity()
-        # count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
-        print(self.total_lines)
-        # print(number_of_days_since_last_change, stars_count, count_of_contributors, forks_count, count_of_open_issues, count_of_closed_issue, count_of_merged_pull_requests)
+        self.get_count_of_lines(f'{self.api_link}{self.repozitory_name}/contents')
+        self.number_of_days_since_last_change = self.get_number_of_days_since_last_change()
+        self.stars_count = self.get_stars_count()
+        self.count_of_contributors = self.get_count_of_contributors()
+        self.forks_count = self.get_forks_count()
+        self.count_of_open_issues = self.get_count_of_open_issues()
+        self.count_of_closed_issue = self.get_count_of_closed_issues()
+        self.count_of_merged_pull_requests = self.get_count_of_merged_pull_requests()
+        self.get_count_of_comment_lines(f"{self.api_link}{self.repozitory_name}/contents/")
+        # self.cyclomatic_complexity = self.get_cyclomatic_complexity()
+        self.count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
+        print(self.count_of_comment_lines)
 
     def get_info_from_github_api(self):
         result = requests.get(f'{self.api_link}{self.repozitory_name}', auth=self.auth)
         print(result.text)
         self.info = result.json()
 
-
-    # def get_contents_of_dir(self, url: str):
-    #     response = requests.get(url, auth=self.auth)
-
-    def get_count_of_lines(self, old_url: str):
-        url = f"{old_url}/contents"
+    def get_count_of_lines(self, url: str):
         response = requests.get(url, auth=self.auth)
-        print(url, response)
         if response.status_code == 200:
             data = response.json()
             for file_data in data:
                 if file_data["type"] == "file":
-                    print(file_data["name"])
                     file_url = file_data["download_url"]
                     file_response = requests.get(file_url, auth=self.auth)
                     if file_response.status_code == 200:
                         file_content = file_response.text
                         self.total_lines += len(file_content.split("\n"))
                 if file_data["type"] == 'dir':
-                    print(file_data)
-                    new_url = file_data['html_url']
-                    new_url_list = new_url.split('/')[3:]
-                    new_url = f'{self.api_link}{"/".join(new_url_list)}'
-                    print(new_url)
-                    self.get_count_of_lines(new_url)
-
-
+                    self.get_count_of_lines(file_data['url'])
 
     def get_number_of_days_since_last_change(self):
         last_update_date_str = self.info["updated_at"]
@@ -66,7 +61,6 @@ class RepozitoryHandler:
         today = datetime.now()
         days_since_last_update = (today - last_update_date).days
         return days_since_last_update
-
 
     def get_stars_count(self):
         return self.info['stargazers_count']
@@ -93,7 +87,7 @@ class RepozitoryHandler:
             return None
 
     def get_count_of_merged_pull_requests(self):
-        url = f"https://api.github.com/repos/{self.repozitory_name}/pulls?state=closed&sort=updated&direction=desc"
+        url = f"{self.api_link}{self.repozitory_name}/pulls?state=closed&sort=updated&direction=desc"
         response = requests.get(url, auth=self.auth)
 
         if response.status_code == 200:
@@ -106,12 +100,40 @@ class RepozitoryHandler:
         else:
             return None
 
+    def get_count_of_comment_lines(self, url: str):
+        response = requests.get(url)
 
-    def get_count_of_comment_lines(self):
-        pass
+        if response.status_code == 200:
+            files = response.json()
+            for file in files:
+                if file['type'] == 'file':
+                    file_url = file['download_url']
+                    file_response = requests.get(file_url)
+
+                    if file_response.status_code == 200:
+                        lines = file_response.text.split('\n')
+                        for line in lines:
+                            if line.strip().startswith('#') or line.strip().startswith('//'):
+                                print(line)
+                                self.count_of_comment_lines += 1
+                if file["type"] == 'dir':
+                    self.get_count_of_comment_lines(file['url'])
 
     def get_cyclomatic_complexity(self):
         pass
 
     def get_count_of_commit_comment_lines(self):
-        pass
+        url = f"{self.api_link}{self.repozitory_name}/commits"
+        response = requests.get(url)
+        if response.status_code == 200:
+            commits = response.json()
+
+            total_comment_lines = 0
+
+            for commit in commits:
+                comment_lines = commit['commit']['message'].count('\n') + 1
+                total_comment_lines += comment_lines
+
+            return total_comment_lines
+        return None
+
