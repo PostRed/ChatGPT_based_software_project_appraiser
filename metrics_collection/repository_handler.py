@@ -5,11 +5,11 @@ from radon.complexity import cc_visit
 
 class RepozitoryHandler:
     def __init__(self, repozitory_name: str, username: str, token: str):
+        self.number_of_days_since_last_change = 0
         self.gh_session = requests.Session()
         self.gh_session.auth = (username, token)
         self.info = None
         self.total_lines = 0
-        self.number_of_days_since_last_change = 0
         self.stars_count = 0
         self.count_of_contributors = 0
         self.forks_count = 0
@@ -29,17 +29,35 @@ class RepozitoryHandler:
     def calculate_metrics(self):
         if not self.info is None:
             self.get_count_of_lines(f'{self.api_link}{self.repozitory_name}/contents')
+            print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
             self.number_of_days_since_last_change = self.get_number_of_days_since_last_change()
+            print(
+                f'repository = {self.repozitory_name}\t'
+                f'number_of_days_since_last_change = {self.number_of_days_since_last_change}')
             self.stars_count = self.get_stars_count()
+            print(f'repository = {self.repozitory_name}\tstars_count = {self.stars_count}')
             self.count_of_contributors = self.get_count_of_contributors()
+            print(f'repository = {self.repozitory_name}\tcount_of_contributors = {self.count_of_contributors}')
             self.forks_count = self.get_forks_count()
+            print(f'repository = {self.repozitory_name}\tforks_count = {self.forks_count}')
             self.count_of_open_issues = self.get_count_of_open_issues()
+            print(f'repository = {self.repozitory_name}\tcount_of_open_issues = {self.count_of_open_issues}')
             self.count_of_closed_issue = self.get_count_of_closed_issues()
+            print(f'repository = {self.repozitory_name}\tcount_of_closed_issue = {self.count_of_closed_issue}')
             self.count_of_merged_pull_requests = self.get_count_of_merged_pull_requests()
+            print(
+                f'repository = {self.repozitory_name}\t'
+                f'count_of_merged_pull_requests = {self.count_of_merged_pull_requests}')
             self.get_count_of_comment_lines(f"{self.api_link}{self.repozitory_name}/contents/")
-            # self.get_cyclomatic_complexity(f"{self.api_link}{self.repozitory_name}/contents/")
+            print(f'repository = {self.repozitory_name}\tcount_of_comment_lines = {self.count_of_comment_lines}')
+            self.get_cyclomatic_complexity(f"{self.api_link}{self.repozitory_name}/contents/")
+            self.cyclomatic_complexity = self.total_cc / self.total_methods
+            print(f'repository = {self.repozitory_name}\tcyclomatic_complexity = {self.cyclomatic_complexity}')
             self.count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
-            print(self.total_cc, self.total_methods)
+            print(
+                f'repository = {self.repozitory_name}\t'
+                f'count_of_commit_comment_lines = {self.count_of_commit_comment_lines}')
+
 
     def get_info_from_github_api(self):
         result = self.gh_session.get(f'{self.api_link}{self.repozitory_name}')
@@ -136,15 +154,20 @@ class RepozitoryHandler:
         if response.status_code == 200:
             files = response.json()
             for file in files:
-                if file['type'] == 'file' and file['name'].endswith('.java'):
+                if file['type'] == 'file' and file['name'].endswith('.java') or file['name'].endswith('.py') \
+                        or file['name'].endswith('.c') or file['name'].endswith('.cs') \
+                        or file['name'].endswith('.swift') or file['name'].endswith('.cpp'):
                     file_url = file['download_url']
                     file_response = self.gh_session.get(file_url)
                     if file_response.status_code == 200:
                         file_content = file_response.text
-                        blocks = cc_visit(file_content)
-                        for block in blocks:
-                            self.total_cc += block.complexity
-                            self.total_methods += 1
+                        try:
+                            blocks = cc_visit(file_content)
+                            for block in blocks:
+                                self.total_cc += block.complexity
+                                self.total_methods += 1
+                        except Exception:
+                            print('Невозможно посчитать cyclomatic complexity')
                 if file["type"] == 'dir':
                     self.get_cyclomatic_complexity(file['url'])
 
