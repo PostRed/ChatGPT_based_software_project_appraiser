@@ -1,0 +1,3 @@
+Repozitory_name,total_lines,number_of_days_since_last_change,stars_count,count_of_contributors,forks_count,count_of_open_issues,count_of_closed_issue,count_of_merged_pull_requests,count_of_comment_lines,cyclomatic_complexity,count_of_commit_comment_lines,syntax_errors
+PostRed/TINCOFF,125,423,0,1,0,0,0,0,1,12.0,6,0
+ldoublem/PaperShredder,21537,64,685,1,75,1,0,0,127,6.166666666666667,16,0

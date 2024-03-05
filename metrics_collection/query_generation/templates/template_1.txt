@@ -1,0 +1,19 @@
+Rate the quality of the repository with the following content from 1 to 100.
+Rely on the following parameters:
+1 Quality of project management
+2 How much is the project ready for new programmers
+2.1 How comfortable will it be for new programmers to work
+2.2 How much is the repository understandable for new programmers
+
+Total lines: $total_lines
+Days since last change: $number_of_days_since_last_change
+Stars count: $stars_count
+Contributors count: $count_of_contributors
+Forks count: $forks_count
+Open issues count: $count_of_open_issues
+Closed issues count: $count_of_closed_issue
+Merged pull requests count: $count_of_merged_pull_requests
+Comment lines count: $count_of_comment_lines
+Cyclomatic complexity: $cyclomatic_complexity
+Commit comment lines count: $count_of_commit_comment_lines
+Count of files with syntax errors: $syntax_errors

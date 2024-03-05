@@ -9,6 +9,7 @@ class RepozitoryHandlerForFile:
         self.path_to_file = path_to_file
         self.username = username
         self.token = token
+        self.fill_repozitories()
 
     def fill_repozitories(self):
         with open(self.path_to_file, 'r') as file:

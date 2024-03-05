@@ -1,5 +1,9 @@
+import ast
+import javalang
 import requests
 from datetime import datetime
+
+from pycparser import parse_file
 from radon.complexity import cc_visit
 
 
@@ -19,8 +23,8 @@ class RepozitoryHandler:
         self.count_of_comment_lines = 0
         self.cyclomatic_complexity = 0
         self.count_of_commit_comment_lines = 0
-        self.total_cc = 0
-        self.total_methods = 0
+        self.syntax_errors = 0
+        self.total_cc = []
         self.api_link = 'https://api.github.com/repos/'
         self.repozitory_name = repozitory_name
         self.get_info_from_github_api()
@@ -28,8 +32,6 @@ class RepozitoryHandler:
 
     def calculate_metrics(self):
         if not self.info is None:
-            self.get_count_of_lines(f'{self.api_link}{self.repozitory_name}/contents')
-            print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
             self.number_of_days_since_last_change = self.get_number_of_days_since_last_change()
             print(
                 f'repository = {self.repozitory_name}\t'
@@ -49,15 +51,17 @@ class RepozitoryHandler:
                 f'repository = {self.repozitory_name}\t'
                 f'count_of_merged_pull_requests = {self.count_of_merged_pull_requests}')
             self.get_count_of_comment_lines(f"{self.api_link}{self.repozitory_name}/contents/")
+            print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
             print(f'repository = {self.repozitory_name}\tcount_of_comment_lines = {self.count_of_comment_lines}')
             self.get_cyclomatic_complexity(f"{self.api_link}{self.repozitory_name}/contents/")
-            self.cyclomatic_complexity = self.total_cc / self.total_methods
+            if  len(self.total_cc) > 0:
+                self.cyclomatic_complexity = sum(self.total_cc) / len(self.total_cc)
             print(f'repository = {self.repozitory_name}\tcyclomatic_complexity = {self.cyclomatic_complexity}')
             self.count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
             print(
                 f'repository = {self.repozitory_name}\t'
                 f'count_of_commit_comment_lines = {self.count_of_commit_comment_lines}')
-
+            print(f'repository = {self.repozitory_name}\tsyntax_errors = {self.syntax_errors}')
 
     def get_info_from_github_api(self):
         result = self.gh_session.get(f'{self.api_link}{self.repozitory_name}')
@@ -66,21 +70,6 @@ class RepozitoryHandler:
         else:
             print('Невозможно получить данные репозитория')
 
-    def get_count_of_lines(self, url: str):
-        response = self.gh_session.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            for file_data in data:
-                if file_data["type"] == "file":
-                    file_url = file_data["download_url"]
-                    file_response = self.gh_session.get(file_url)
-                    if file_response.status_code == 200:
-                        file_content = file_response.text
-                        self.total_lines += len(file_content.split("\n"))
-                if file_data["type"] == 'dir':
-                    self.get_count_of_lines(file_data['url'])
-        else:
-            print("Невозможно получить количество строк")
 
     def get_number_of_days_since_last_change(self):
         last_update_date_str = self.info["updated_at"]
@@ -140,6 +129,7 @@ class RepozitoryHandler:
 
                     if file_response.status_code == 200:
                         lines = file_response.text.split('\n')
+                        self.total_lines += len(lines)
                         for line in lines:
                             if line.strip().startswith('#') or line.strip().startswith('//'):
                                 self.count_of_comment_lines += 1
@@ -162,12 +152,38 @@ class RepozitoryHandler:
                     if file_response.status_code == 200:
                         file_content = file_response.text
                         try:
-                            blocks = cc_visit(file_content)
-                            for block in blocks:
-                                self.total_cc += block.complexity
-                                self.total_methods += 1
-                        except Exception:
-                            print('Невозможно посчитать cyclomatic complexity')
+                            if file['name'].endswith('.py'):
+                                tree = ast.parse(file_content)
+                                complexity = 1
+                                for node in ast.walk(tree):
+                                    if isinstance(node, ast.If) or \
+                                            isinstance(node, ast.For) or \
+                                            isinstance(node, ast.While) or \
+                                            isinstance(node, ast.With):
+                                        complexity += 1
+                                    elif isinstance(node, ast.Try) or isinstance(node, ast.ExceptHandler):
+                                        complexity += 1
+                                self.total_cc.append(complexity)
+                            elif file['name'].endswith(('.c', '.cpp', '.cs', '.swift')):
+                                ast_tree = parse_file(file_content)
+                                self.total_cc.append(ast_tree.show(showcoord=False).count('Compound'))
+                            elif file['name'].endswith('.java'):
+                                tree = javalang.parse.parse(file_content)
+                                complexity = 1
+                                for path, node in tree:
+                                    if isinstance(node, javalang.tree.IfStatement):
+                                        complexity += 1
+                                    elif isinstance(node, javalang.tree.ForStatement):
+                                        complexity += 1
+                                self.total_cc.append(complexity)
+                        except SyntaxError as exc:
+                            self.syntax_errors += 1
+                            print(f'Синтаксическая ошибка в файле:\n{file_url}')
+                            print(f'Информация об ошибке: {type(exc)}\n{exc.args}')
+                        except Exception as exc:
+                            print(f'Невозможно посчитать cyclomatic complexity в файле:\n{file_url}')
+                            print(f'Информация об ошибке: {type(exc)}\n{exc.args}')
+
                 if file["type"] == 'dir':
                     self.get_cyclomatic_complexity(file['url'])
 
