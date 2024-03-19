@@ -82,9 +82,9 @@ class RepozitoryHandler:
                 f'count_of_commit_comment_lines = {self.count_of_commit_comment_lines}')
             print(f'repository = {self.repozitory_name}\tsyntax_errors = {self.syntax_errors}')
             self.average_cc_method = self.calculate_average_cognitive_complexity()
-            print(f'Average Cognitive Complexity of a Method: {self.average_cc_method}')
+            print(f'repository = {self.repozitory_name}\taverage Cognitive Complexity of a Method: {self.average_cc_method}')
             if len(self.trees) != 0:
-                code_metrics = CodeMetrics(self.trees)
+                code_metrics = CodeMetrics(self.trees, self.repozitory_name)
 
 
     def get_info_from_github_api(self):

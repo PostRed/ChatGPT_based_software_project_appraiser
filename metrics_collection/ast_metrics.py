@@ -28,7 +28,7 @@ from typing import Any
 import javalang
 
 
-def doer(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
+def doer_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     """Ratio between the number of attributes that are data primitives and the number of attributes that are pointers to objects.
     :rtype: float
     """
@@ -49,7 +49,7 @@ def doer(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     return num_primitives / total
 
 
-def ahf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
+def ahf_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     """Ratio of private/protected attributes to all attributes in a class.
     :rtype: float
     """
@@ -67,7 +67,7 @@ def ahf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     return hidden / total
 
 
-def sahf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
+def sahf_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     """Ratio of private/protected attributes to static attributes in a class.
     :rtype: float
     """
@@ -87,7 +87,7 @@ def sahf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     return hidden / total
 
 
-def nomp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def nomp_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Total number of parameters in all class methods.
     :rtype: int
     """
@@ -100,7 +100,7 @@ def nomp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return total
 
 
-def nosmp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def nosmp_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Total number of parameters in static class methods.
     :rtype: int
     """
@@ -115,7 +115,7 @@ def nosmp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return total
 
 
-def mxnomp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def mxnomp_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Maximum number of parameters in all class methods.
     :rtype: int
     """
@@ -128,7 +128,7 @@ def mxnomp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return maximum
 
 
-def mxnosmp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def mxnosmp_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Maximum number of parameters in static class methods.
     :rtype: int
     """
@@ -143,7 +143,7 @@ def mxnosmp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return maximum
 
 
-def nom(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def nom_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Number of methods that are annotated with @Override.
     :rtype: int
     """
@@ -159,7 +159,7 @@ def nom(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return total
 
 
-def attrs(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def attrs_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count non-static attributes.
     :rtype: int
     """
@@ -173,7 +173,7 @@ def attrs(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return found
 
 
-def sattrs(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def sattrs_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count static attributes.
     :rtype: int
     """
@@ -187,7 +187,7 @@ def sattrs(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return found
 
 
-def ctors(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def ctors_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count constructors.
     :rtype: int
     """
@@ -196,7 +196,7 @@ def ctors(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return len(clist)
 
 
-def methods(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def methods_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count non-static methods.
     :rtype: int
     """
@@ -210,7 +210,7 @@ def methods(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return found
 
 
-def smethods(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def smethods_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count static methods.
     :rtype: int
     """
@@ -224,7 +224,7 @@ def smethods(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return found
 
 
-def mhf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
+def mhf_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     """Calculate Method Hiding Factor (MHF), which is the ratio
     between private+protected methods and all methods.
     :rtype: float
@@ -243,7 +243,7 @@ def mhf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     return hidden / total
 
 
-def smhf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
+def smhf_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     """Calculate Static Method Hiding Factor (SMHF), which is the ratio
     between private+protected methods and all methods (which are static).
     :rtype: float
@@ -264,7 +264,7 @@ def smhf(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     return hidden / total
 
 
-def ncss(parser_class: javalang.tree.CompilationUnit) -> int:
+def ncss_(parser_class: javalang.tree.CompilationUnit) -> int:
     """Count the NCSS (non-commenting source statement) lines.
     :rtype: int
     """
@@ -285,42 +285,42 @@ def ncss(parser_class: javalang.tree.CompilationUnit) -> int:
     return value
 
 
-def impls(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def impls_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count the number of interfaces the class implements.
     r:type: int
     """
     return len(tlist[0][1].implements or [])
 
 
-def extnds(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def extnds_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Count the number of classes this class extends (0 or 1).
     r:type: int
     """
     return 0 if tlist[0][1].extends is None else 1
 
 
-def final(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def final_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Return 1 if the class is final, zero otherwise.
     r:type: int
     """
     return 1 if 'final' in tlist[0][1].modifiers else 0
 
 
-def gnrcs(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def gnrcs_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Return number of type parameters (generics).
     r:type: int
     """
     return len(tlist[0][1].type_parameters or [])
 
 
-def annts(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def annts_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Return number of annotations of the class.
     r:type: int
     """
     return len(tlist[0][1].annotations or [])
 
 
-def varcomp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
+def varcomp_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     """Return average number of parts in variable names in class.
     r:type: float
     """
@@ -348,7 +348,7 @@ def varcomp(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> float:
     return (parts / variables) if variables != 0 else 0
 
 
-def nop(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def nop_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Return number of polymorphic methods in main class.
     Methods of nested classes are skipped.
     r:type: int
@@ -367,7 +367,7 @@ def nop(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     return sum(1 for count in methods_count.values() if count > 1)
 
 
-def nulls(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
+def nulls_(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
     """Return number of null references used in the class.
     r:type: int
     """
@@ -381,79 +381,79 @@ def nulls(tlist: list[tuple[Any, javalang.tree.ClassDeclaration]]) -> int:
 class NotClassError(Exception):
     """If it's not a class"""
 
-
-if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Usage: python ast.py <path to the .java file> <output file with metrics>")
-        sys.exit(1)
-
-    JAVA = sys.argv[1]
-    METRICS = sys.argv[2]
-    with open(JAVA, encoding='utf-8', errors='ignore') as file:
-        try:
-            raw = javalang.parse.parse(file.read())
-            tree = raw.filter(javalang.tree.ClassDeclaration)
-            if not (tree_class := list((value for value in tree))):
-                raise NotClassError('This is not a class')
-            with open(METRICS, 'a', encoding='utf-8') as metric:
-                metric.write(f'nooa {attrs(tree_class)} '
-                             f'Number of Non-Static (Object) Attributes\n')
-                metric.write(f'nosa {sattrs(tree_class)} '
-                             f'Number of Static Attributes\n')
-                metric.write(f'nocc {ctors(tree_class)} '
-                             f'Number of Class Constructors\n')
-                metric.write(f'noom {methods(tree_class)} '
-                             f'Number of Non-Static (Object) Methods\n')
-                metric.write(f'nocm {smethods(tree_class)} '
-                             f'Number of Static (Class) Methods\n')
-                metric.write(f'ncss {ncss(raw)} '
-                             f'Non-Commenting Source Statements (NCSS)\n')
-                metric.write(f'noii {impls(tree_class)} '
-                             f'Number of Implemented Interfaces\n')
-                metric.write(f'napc {extnds(tree_class)} '
-                             f'Number of Ancestor (Parent) Classes\n')
-                metric.write(f'notp {gnrcs(tree_class)} '
-                             f'Number of Type Parameters (Generics)\n')
-                metric.write(f'final {final(tree_class)} '
-                             f'Class is ``final\'\' (1) or not (0)\n')
-                metric.write(f'noca {annts(tree_class)} '
-                             f'Number of Class Annotations\n')
-                metric.write(f'varcomp {varcomp(tree_class)} '
-                             f'Average number of parts in variable names\n')
-                metric.write(f'mhf {mhf(tree_class)} '
-                             f'Method Hiding Factor (MHF), which is the ratio of private \
-                             and protected methods to total methods\n')
-                metric.write(f'smhf {smhf(tree_class)} '
-                             f'Static Method Hiding Factor (MHF), which is the ratio of private \
-                             and protected static methods to total static methods\n')
-                metric.write(f'ahf {ahf(tree_class)} '
-                             f'Attribute Hiding Factor (AHF), which is the ratio of private \
-                             and protected attributes to total attributes\n')
-                metric.write(f'sahf {sahf(tree_class)} '
-                             f'Static Attribute Hiding Factor (SAHF), which is the ratio of private \
-                             and protected static attributes to total static attributes\n')
-                metric.write(f'nomp {nomp(tree_class)} '
-                             f'Number of Method Parameters (NOMP), which is the count of \
-                             all parameters in all methods in a class\n')
-                metric.write(f'nosmp {nosmp(tree_class)} '
-                             f'Number of Static Method Parameters (NOSMP), which is the count of all \
-                             parameters in all static methods in a class\n')
-                metric.write(f'mxnomp {mxnomp(tree_class)} '
-                             f'Maximum of Method Parameters (MxNOMP), which is the largest amount \
-                             of parameters in some method in a class\n')
-                metric.write(f'mxnosmp {mxnosmp(tree_class)} '
-                             f'Maximum of Static Method Parameters (MxNOSMP), which is the largest \
-                             amount of parameters in some static method in a class\n')
-                metric.write(f'nom {nom(tree_class)} '
-                             f'Number of Overriding Methods (NOM), which is the number of methods \
-                             with the \\texttt{{@Override}} annotation\n')
-                metric.write(f'nop {nop(tree_class)} '
-                             f'Number of Polymorphic Methods (NOP), which is the count of methods \
-                             that are overloaded at least once --- have similar names but different parameters\n')
-                metric.write(f'nulls {nulls(tree_class)} '
-                             f'Number of NULL References\n')
-                metric.write(f'doer {doer(tree_class)} '
-                             f'Data vs Object Encapsulation Ratio\n')
-        except FileNotFoundError as exception:
-            message = f"{type(exception).__name__} {str(exception)}: {JAVA}"
-            sys.exit(message)
+#
+# if __name__ == '__main__':
+#     if len(sys.argv) != 3:
+#         print("Usage: python ast_metrics.py <path to the .java file> <output file with metrics>")
+#         sys.exit(1)
+#
+#     JAVA = sys.argv[1]
+#     METRICS = sys.argv[2]
+#     with open(JAVA, encoding='utf-8', errors='ignore') as file:
+#         try:
+#             raw = javalang.parse.parse(file.read())
+#             tree = raw.filter(javalang.tree.ClassDeclaration)
+#             if not (tree_class := list((value for value in tree))):
+#                 raise NotClassError('This is not a class')
+#             with open(METRICS, 'a', encoding='utf-8') as metric:
+#                 metric.write(f'nooa {attrs(tree_class)} '
+#                              f'Number of Non-Static (Object) Attributes\n')
+#                 metric.write(f'nosa {sattrs(tree_class)} '
+#                              f'Number of Static Attributes\n')
+#                 metric.write(f'nocc {ctors(tree_class)} '
+#                              f'Number of Class Constructors\n')
+#                 metric.write(f'noom {methods(tree_class)} '
+#                              f'Number of Non-Static (Object) Methods\n')
+#                 metric.write(f'nocm {smethods(tree_class)} '
+#                              f'Number of Static (Class) Methods\n')
+#                 metric.write(f'ncss {ncss_(raw)} '
+#                              f'Non-Commenting Source Statements (NCSS)\n')
+#                 metric.write(f'noii {impls(tree_class)} '
+#                              f'Number of Implemented Interfaces\n')
+#                 metric.write(f'napc {extnds(tree_class)} '
+#                              f'Number of Ancestor (Parent) Classes\n')
+#                 metric.write(f'notp {gnrcs(tree_class)} '
+#                              f'Number of Type Parameters (Generics)\n')
+#                 metric.write(f'final {final(tree_class)} '
+#                              f'Class is ``final\'\' (1) or not (0)\n')
+#                 metric.write(f'noca {annts(tree_class)} '
+#                              f'Number of Class Annotations\n')
+#                 metric.write(f'varcomp {varcomp(tree_class)} '
+#                              f'Average number of parts in variable names\n')
+#                 metric.write(f'mhf {mhf(tree_class)} '
+#                              f'Method Hiding Factor (MHF), which is the ratio of private \
+#                              and protected methods to total methods\n')
+#                 metric.write(f'smhf {smhf(tree_class)} '
+#                              f'Static Method Hiding Factor (MHF), which is the ratio of private \
+#                              and protected static methods to total static methods\n')
+#                 metric.write(f'ahf {ahf(tree_class)} '
+#                              f'Attribute Hiding Factor (AHF), which is the ratio of private \
+#                              and protected attributes to total attributes\n')
+#                 metric.write(f'sahf {sahf(tree_class)} '
+#                              f'Static Attribute Hiding Factor (SAHF), which is the ratio of private \
+#                              and protected static attributes to total static attributes\n')
+#                 metric.write(f'nomp {nomp(tree_class)} '
+#                              f'Number of Method Parameters (NOMP), which is the count of \
+#                              all parameters in all methods in a class\n')
+#                 metric.write(f'nosmp {nosmp(tree_class)} '
+#                              f'Number of Static Method Parameters (NOSMP), which is the count of all \
+#                              parameters in all static methods in a class\n')
+#                 metric.write(f'mxnomp {mxnomp(tree_class)} '
+#                              f'Maximum of Method Parameters (MxNOMP), which is the largest amount \
+#                              of parameters in some method in a class\n')
+#                 metric.write(f'mxnosmp {mxnosmp(tree_class)} '
+#                              f'Maximum of Static Method Parameters (MxNOSMP), which is the largest \
+#                              amount of parameters in some static method in a class\n')
+#                 metric.write(f'nom {nom(tree_class)} '
+#                              f'Number of Overriding Methods (NOM), which is the number of methods \
+#                              with the \\texttt{{@Override}} annotation\n')
+#                 metric.write(f'nop {nop(tree_class)} '
+#                              f'Number of Polymorphic Methods (NOP), which is the count of methods \
+#                              that are overloaded at least once --- have similar names but different parameters\n')
+#                 metric.write(f'nulls {nulls(tree_class)} '
+#                              f'Number of NULL References\n')
+#                 metric.write(f'doer {doer(tree_class)} '
+#                              f'Data vs Object Encapsulation Ratio\n')
+#         except FileNotFoundError as exception:
+#             message = f"{type(exception).__name__} {str(exception)}: {JAVA}"
+#             sys.exit(message)
