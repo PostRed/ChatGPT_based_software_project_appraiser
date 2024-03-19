@@ -25,7 +25,7 @@ class QueryGenerator:
 
         templates_path = "query_generation/templates/"
         for row in self.data:
-            for i in range(1, 3):
+            for i in range(1, 2):
                 template_file = templates_path + f"template_{i}.txt"
                 with open(template_file, 'r') as file:
                     template_content = file.read()
