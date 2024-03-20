@@ -15,6 +15,33 @@ if __name__ == '__main__':
                          'count_of_comment_lines',
                          'cyclomatic_complexity', 'count_of_commit_comment_lines', 'syntax_errors'])
 
+    with open('files/java_metrics.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Repozitory_name', 'min_nooa', 'max_nooa', 'aver_nooa',
+                            'min_nosa', 'max_nosa', 'aver_nosa',
+                            'min_nocc', 'max_nocc', 'aver_nocc',
+                            'min_noom', 'max_noom', 'aver_noom',
+                            'min_nocm', 'max_nocm', 'aver_nocm',
+                            'min_ncss', 'max_ncss', 'aver_ncss',
+                            'min_noii', 'max_noii', 'aver_noii',
+                            'min_napc', 'max_napc', 'aver_napc',
+                            'min_notp', 'max_notp', 'aver_notp',
+                            'min_final', 'max_final', 'aver_final',
+                            'min_noca', 'max_noca', 'aver_noca',
+                            'min_varcomp', 'max_varcomp', 'aver_varcomp',
+                            'min_mhf', 'max_mhf', 'aver_mhf',
+                            'min_smhf', 'max_smhf', 'aver_smhf',
+                            'min_ahf', 'max_ahf', 'aver_ahf',
+                            'min_sahf', 'max_sahf', 'aver_sahf',
+                            'min_nomp', 'max_nomp', 'aver_nomp',
+                            'min_nosmp', 'max_nosmp', 'aver_nosmp',
+                            'min_mxnomp', 'max_mxnomp', 'aver_mxnomp',
+                            'min_mxnosmp', 'max_mxnosmp', 'aver_mxnosmp',
+                            'min_nom', 'max_nom', 'aver_nom',
+                            'min_nop', 'max_nop', 'aver_nop',
+                            'min_nulls', 'max_nulls', 'aver_nulls',
+                            'min_doer', 'max_doer', 'aver_doer'])
+
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('--count_metrics_file', type=str, help='Укажите путь к файлу для подсчета метрик.')
     parser.add_argument('--count_metrics_rep', type=str, help='Укажите имя репозитория для подсчета метрик.')

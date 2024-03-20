@@ -6,7 +6,7 @@ Rely on the following parameters:
 2.2 How much is the repository understandable for new programmers
 
 Total lines: 1772
-Days since last change: 282
+Days since last change: 283
 Stars count: 282
 Contributors count: 4
 Forks count: 46
