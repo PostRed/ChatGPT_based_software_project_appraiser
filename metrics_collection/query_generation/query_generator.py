@@ -28,9 +28,10 @@ class QueryGenerator:
                 template = Template(template_content)
                 query = template.substitute(row)
                 rep_name = '_'.join(row['Repozitory_name'].split('/'))
-                file_name = f"../text_queries/{rep_name}_query_1.txt"
-                with open(file_name,  mode='a') as file:
-                    file.write(query)
+                for i in range(1, 3):
+                    file_name = f"../text_queries/{rep_name}_query_{i}.txt"
+                    with open(file_name,  mode='a') as file:
+                        file.write(query)
 
     def generate_queries(self):
         for file_name in os.listdir('../text_queries'):
@@ -41,7 +42,7 @@ class QueryGenerator:
 
         templates_path = "query_generation/templates/"
         for row in self.data:
-            for i in range(1, 2):
+            for i in range(1, 3):
                 template_file = templates_path + f"template_{i}.txt"
                 with open(template_file, 'r') as file:
                     template_content = file.read()
