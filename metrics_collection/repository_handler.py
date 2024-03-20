@@ -69,13 +69,13 @@ class RepozitoryHandler:
             print(
                 f'repository = {self.repozitory_name}\t'
                 f'count_of_merged_pull_requests = {self.count_of_merged_pull_requests}')
-            self.get_count_of_comment_lines(f"{self.api_link}{self.repozitory_name}/contents/")
-            print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
-            print(f'repository = {self.repozitory_name}\tcount_of_comment_lines = {self.count_of_comment_lines}')
+
             self.get_cyclomatic_complexity(f"{self.api_link}{self.repozitory_name}/contents/")
             if len(self.total_cc) > 0:
                 self.cyclomatic_complexity = sum(self.total_cc) / len(self.total_cc)
             print(f'repository = {self.repozitory_name}\tcyclomatic_complexity = {self.cyclomatic_complexity}')
+            print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
+            print(f'repository = {self.repozitory_name}\tcount_of_comment_lines = {self.count_of_comment_lines}')
             self.count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
             print(
                 f'repository = {self.repozitory_name}\t'
@@ -140,27 +140,6 @@ class RepozitoryHandler:
             print("Невозможно получить кодичество merged pull requests")
             return None
 
-    def get_count_of_comment_lines(self, url: str):
-        response = self.gh_session.get(url)
-
-        if response.status_code == 200:
-            files = response.json()
-            for file in files:
-                if file['type'] == 'file':
-                    file_url = file['download_url']
-                    file_response = self.gh_session.get(file_url)
-
-                    if file_response.status_code == 200:
-                        lines = file_response.text.split('\n')
-                        self.total_lines += len(lines)
-                        for line in lines:
-                            if line.strip().startswith('#') or line.strip().startswith('//'):
-                                self.count_of_comment_lines += 1
-                if file["type"] == 'dir':
-                    self.get_count_of_comment_lines(file['url'])
-        else:
-            print('Невозможно получить количество строк в комментария')
-
     def get_cyclomatic_complexity(self, url: str):
         response = self.gh_session.get(url)
 
@@ -174,6 +153,12 @@ class RepozitoryHandler:
                     file_response = self.gh_session.get(file_url)
                     if file_response.status_code == 200:
                         file_content = file_response.text
+
+                        lines = file_content.split('\n')
+                        self.total_lines += len(lines)
+                        for line in lines:
+                            if line.strip().startswith('#') or line.strip().startswith('//'):
+                                self.count_of_comment_lines += 1
                         try:
                             if file['name'].endswith('.py'):
                                 tree = ast.parse(file_content)
