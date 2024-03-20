@@ -138,175 +138,174 @@ class CodeMetrics:
     def count_metrics(self):
         for raw in self.trees:
             tree = raw.filter(javalang.tree.ClassDeclaration)
-            if not (tree_class := list((value for value in tree))):
-                raise NotClassError('This is not a class')
-            nooa = attrs_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnooa = {nooa}')
-            self.min_nooa = min(nooa, self.min_nooa)
-            self.max_nooa = max(nooa, self.max_nooa)
-            self.total_nooa += 1
-            self.nooa += nooa
+            if (tree_class := list((value for value in tree))):
+                nooa = attrs_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnooa = {nooa}')
+                self.min_nooa = min(nooa, self.min_nooa)
+                self.max_nooa = max(nooa, self.max_nooa)
+                self.total_nooa += 1
+                self.nooa += nooa
 
-            nosa = sattrs_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnosa = {nosa}')
-            self.min_nosa = min(nosa, self.min_nosa)
-            self.max_nosa = max(nosa, self.max_nosa)
-            self.total_nosa += 1
-            self.nosa += nosa
+                nosa = sattrs_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnosa = {nosa}')
+                self.min_nosa = min(nosa, self.min_nosa)
+                self.max_nosa = max(nosa, self.max_nosa)
+                self.total_nosa += 1
+                self.nosa += nosa
 
-            nocc = ctors_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnocc = {nocc}')
-            self.min_nocc = min(nocc, self.min_nocc)
-            self.max_nocc = max(nocc, self.max_nocc)
-            self.total_nocc += 1
-            self.nocc += nocc
+                nocc = ctors_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnocc = {nocc}')
+                self.min_nocc = min(nocc, self.min_nocc)
+                self.max_nocc = max(nocc, self.max_nocc)
+                self.total_nocc += 1
+                self.nocc += nocc
 
-            noom = methods_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnoom = {noom}')
-            self.min_noom = min(noom, self.min_noom)
-            self.max_noom = max(noom, self.max_noom)
-            self.total_noom += 1
-            self.noom += noom
+                noom = methods_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnoom = {noom}')
+                self.min_noom = min(noom, self.min_noom)
+                self.max_noom = max(noom, self.max_noom)
+                self.total_noom += 1
+                self.noom += noom
 
-            nocm = smethods_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnocm = {nocm}')
-            self.min_nocm = min(nocm, self.min_nocm)
-            self.max_nocm = max(nocm, self.max_nocm)
-            self.total_nocm += 1
-            self.nocm += nocm
+                nocm = smethods_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnocm = {nocm}')
+                self.min_nocm = min(nocm, self.min_nocm)
+                self.max_nocm = max(nocm, self.max_nocm)
+                self.total_nocm += 1
+                self.nocm += nocm
 
-            ncss = ncss_(raw)
-            print(f'repository = {self.repozitory_name}\tncss = {ncss}')
-            self.min_ncss = min(ncss, self.min_ncss)
-            self.max_ncss = max(ncss, self.max_ncss)
-            self.total_ncss += 1
-            self.ncss += nooa
+                ncss = ncss_(raw)
+                print(f'repository = {self.repozitory_name}\tncss = {ncss}')
+                self.min_ncss = min(ncss, self.min_ncss)
+                self.max_ncss = max(ncss, self.max_ncss)
+                self.total_ncss += 1
+                self.ncss += nooa
 
-            noii = impls_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnoii = {noii}')
-            self.min_noii = min(noii, self.min_noii)
-            self.max_noii = max(noii, self.max_noii)
-            self.total_noii += 1
-            self.noii += noii
+                noii = impls_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnoii = {noii}')
+                self.min_noii = min(noii, self.min_noii)
+                self.max_noii = max(noii, self.max_noii)
+                self.total_noii += 1
+                self.noii += noii
 
-            napc = extnds_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnapc = {napc}')
-            self.min_napc = min(napc, self.min_napc)
-            self.max_napc = max(napc, self.max_napc)
-            self.total_napc += 1
-            self.napc += napc
+                napc = extnds_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnapc = {napc}')
+                self.min_napc = min(napc, self.min_napc)
+                self.max_napc = max(napc, self.max_napc)
+                self.total_napc += 1
+                self.napc += napc
 
-            notp = gnrcs_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnotp = {notp}')
-            self.min_notp = min(notp, self.min_notp)
-            self.max_notp = max(notp, self.max_notp)
-            self.total_notp += 1
-            self.notp += notp
+                notp = gnrcs_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnotp = {notp}')
+                self.min_notp = min(notp, self.min_notp)
+                self.max_notp = max(notp, self.max_notp)
+                self.total_notp += 1
+                self.notp += notp
 
-            final = final_(tree_class)
-            print(f'repository = {self.repozitory_name}\tfinal = {final}')
-            self.min_final = min(final, self.min_final)
-            self.max_final = max(final, self.max_final)
-            self.total_final += 1
-            self.final += final
+                final = final_(tree_class)
+                print(f'repository = {self.repozitory_name}\tfinal = {final}')
+                self.min_final = min(final, self.min_final)
+                self.max_final = max(final, self.max_final)
+                self.total_final += 1
+                self.final += final
 
-            noca = annts_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnoca = {noca}')
-            self.min_noca = min(noca, self.min_noca)
-            self.max_noca = max(noca, self.max_noca)
-            self.total_noca += 1
-            self.noca += noca
+                noca = annts_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnoca = {noca}')
+                self.min_noca = min(noca, self.min_noca)
+                self.max_noca = max(noca, self.max_noca)
+                self.total_noca += 1
+                self.noca += noca
 
-            varcomp = varcomp_(tree_class)
-            print(f'repository = {self.repozitory_name}\tvarcomp = {varcomp}')
-            self.min_varcomp = min(varcomp, self.min_varcomp)
-            self.max_varcomp = max(varcomp, self.max_varcomp)
-            self.total_varcomp += 1
-            self.varcomp += varcomp
+                varcomp = varcomp_(tree_class)
+                print(f'repository = {self.repozitory_name}\tvarcomp = {varcomp}')
+                self.min_varcomp = min(varcomp, self.min_varcomp)
+                self.max_varcomp = max(varcomp, self.max_varcomp)
+                self.total_varcomp += 1
+                self.varcomp += varcomp
 
-            mhf = mhf_(tree_class)
-            print(f'repository = {self.repozitory_name}\tmhf = {self.mhf}')
-            self.min_mhf = min(mhf, self.min_mhf)
-            self.max_mhf = max(mhf, self.max_mhf)
-            self.total_mhf += 1
-            self.mhf += mhf
+                mhf = mhf_(tree_class)
+                print(f'repository = {self.repozitory_name}\tmhf = {self.mhf}')
+                self.min_mhf = min(mhf, self.min_mhf)
+                self.max_mhf = max(mhf, self.max_mhf)
+                self.total_mhf += 1
+                self.mhf += mhf
 
-            smhf = smhf_(tree_class)
-            print(f'repository = {self.repozitory_name}\tsmhf = {smhf}')
-            self.min_smhf = min(smhf, self.min_smhf)
-            self.max_smhf = max(smhf, self.max_smhf)
-            self.total_smhf += 1
-            self.smhf += smhf
+                smhf = smhf_(tree_class)
+                print(f'repository = {self.repozitory_name}\tsmhf = {smhf}')
+                self.min_smhf = min(smhf, self.min_smhf)
+                self.max_smhf = max(smhf, self.max_smhf)
+                self.total_smhf += 1
+                self.smhf += smhf
 
-            ahf = ahf_(tree_class)
-            print(f'repository = {self.repozitory_name}\tahf = {ahf}')
-            self.min_ahf = min(ahf, self.min_ahf)
-            self.max_ahf = max(ahf, self.max_ahf)
-            self.total_ahf += 1
-            self.ahf += ahf
+                ahf = ahf_(tree_class)
+                print(f'repository = {self.repozitory_name}\tahf = {ahf}')
+                self.min_ahf = min(ahf, self.min_ahf)
+                self.max_ahf = max(ahf, self.max_ahf)
+                self.total_ahf += 1
+                self.ahf += ahf
 
-            sahf = sahf_(tree_class)
-            print(f'repository = {self.repozitory_name}\tsahf = {sahf}')
-            self.min_sahf = min(sahf, self.min_sahf)
-            self.max_sahf = max(sahf, self.max_sahf)
-            self.total_sahf += 1
-            self.sahf += sahf
+                sahf = sahf_(tree_class)
+                print(f'repository = {self.repozitory_name}\tsahf = {sahf}')
+                self.min_sahf = min(sahf, self.min_sahf)
+                self.max_sahf = max(sahf, self.max_sahf)
+                self.total_sahf += 1
+                self.sahf += sahf
 
-            nomp = nomp_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnomp = {nomp}')
-            self.min_nomp = min(nomp, self.min_nomp)
-            self.max_nomp = max(nomp, self.max_nomp)
-            self.total_nomp += 1
-            self.nomp += nomp
+                nomp = nomp_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnomp = {nomp}')
+                self.min_nomp = min(nomp, self.min_nomp)
+                self.max_nomp = max(nomp, self.max_nomp)
+                self.total_nomp += 1
+                self.nomp += nomp
 
-            nosmp = nosmp_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnosmp = {nosmp}')
-            self.min_nosmp = min(nosmp, self.min_nosmp)
-            self.max_nosmp = max(nosmp, self.max_nosmp)
-            self.total_nosmp += 1
-            self.nosmp += nosmp
+                nosmp = nosmp_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnosmp = {nosmp}')
+                self.min_nosmp = min(nosmp, self.min_nosmp)
+                self.max_nosmp = max(nosmp, self.max_nosmp)
+                self.total_nosmp += 1
+                self.nosmp += nosmp
 
-            mxnomp = mxnomp_(tree_class)
-            print(f'repository = {self.repozitory_name}\tmxnomp = {mxnomp}')
-            self.min_mxnomp = min(mxnomp, self.min_mxnomp)
-            self.max_mxnomp = max(mxnomp, self.max_mxnomp)
-            self.total_mxnomp += 1
-            self.mxnomp += mxnomp
+                mxnomp = mxnomp_(tree_class)
+                print(f'repository = {self.repozitory_name}\tmxnomp = {mxnomp}')
+                self.min_mxnomp = min(mxnomp, self.min_mxnomp)
+                self.max_mxnomp = max(mxnomp, self.max_mxnomp)
+                self.total_mxnomp += 1
+                self.mxnomp += mxnomp
 
-            mxnosmp = mxnosmp_(tree_class)
-            print(f'repository = {self.repozitory_name}\tmxnosmp = {mxnosmp}')
-            self.min_mxnosmp = min(mxnosmp, self.min_mxnosmp)
-            self.max_mxnosmp = max(mxnosmp, self.max_mxnosmp)
-            self.total_mxnosmp += 1
-            self.mxnosmp += mxnosmp
+                mxnosmp = mxnosmp_(tree_class)
+                print(f'repository = {self.repozitory_name}\tmxnosmp = {mxnosmp}')
+                self.min_mxnosmp = min(mxnosmp, self.min_mxnosmp)
+                self.max_mxnosmp = max(mxnosmp, self.max_mxnosmp)
+                self.total_mxnosmp += 1
+                self.mxnosmp += mxnosmp
 
-            nom = nom_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnom = {nom}')
-            self.min_nom = min(nom, self.min_nom)
-            self.max_nom = max(nom, self.max_nom)
-            self.total_nom += 1
-            self.nom += nom
+                nom = nom_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnom = {nom}')
+                self.min_nom = min(nom, self.min_nom)
+                self.max_nom = max(nom, self.max_nom)
+                self.total_nom += 1
+                self.nom += nom
 
-            nop = nop_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnop = {nop}')
-            self.min_nop = min(nop, self.min_nop)
-            self.max_nop = max(nop, self.max_nop)
-            self.total_nop += 1
-            self.nop += nop
+                nop = nop_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnop = {nop}')
+                self.min_nop = min(nop, self.min_nop)
+                self.max_nop = max(nop, self.max_nop)
+                self.total_nop += 1
+                self.nop += nop
 
-            nulls = nulls_(tree_class)
-            print(f'repository = {self.repozitory_name}\tnulls = {nulls}')
-            self.min_nulls = min(nulls, self.min_nulls)
-            self.max_nulls = max(nulls, self.max_nulls)
-            self.total_nulls += 1
-            self.nulls += nulls
+                nulls = nulls_(tree_class)
+                print(f'repository = {self.repozitory_name}\tnulls = {nulls}')
+                self.min_nulls = min(nulls, self.min_nulls)
+                self.max_nulls = max(nulls, self.max_nulls)
+                self.total_nulls += 1
+                self.nulls += nulls
 
-            doer = doer_(tree_class)
-            print(f'repository = {self.repozitory_name}\tdoer = {doer}')
-            self.min_doer = min(doer, self.min_doer)
-            self.max_doer = max(doer, self.max_doer)
-            self.total_doer += 1
-            self.doer += doer
+                doer = doer_(tree_class)
+                print(f'repository = {self.repozitory_name}\tdoer = {doer}')
+                self.min_doer = min(doer, self.min_doer)
+                self.max_doer = max(doer, self.max_doer)
+                self.total_doer += 1
+                self.doer += doer
 
     def save_metrics(self):
         with open('files/java_metrics.csv', mode='a', newline='') as file:
