@@ -1,2 +1,2 @@
-Repozitory_name,total_lines,number_of_days_since_last_change,stars_count,count_of_contributors,forks_count,count_of_open_issues,count_of_closed_issue,count_of_merged_pull_requests,count_of_comment_lines,cyclomatic_complexity,count_of_commit_comment_lines,syntax_errors
-lzyzsd/AndroidRandomColor,1772,283,282,4,46,4,5,4,111,4.0,19,0
+Repozitory_name,total_lines,number_of_days_since_last_change,stars_count,count_of_contributors,forks_count,count_of_open_issues,count_of_closed_issue,count_of_merged_pull_requests,count_of_comment_lines,cyclomatic_complexity,count_of_commit_comment_lines,syntax_errors,average_cc_method
+lzyzsd/AndroidRandomColor,1772,283,282,4,46,4,5,4,111,4.0,19,0,4.0

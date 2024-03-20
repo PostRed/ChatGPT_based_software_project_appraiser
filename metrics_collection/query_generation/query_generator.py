@@ -4,9 +4,12 @@ from string import Template
 
 
 class QueryGenerator:
-    def __init__(self):
-        self.data = self.read_csv_file("files/metrics.csv")
-        self.generate_queries()
+    def __init__(self, file_path: str):
+        self.data = self.read_csv_file(file_path)
+        if 'java' not in file_path:
+            self.generate_queries()
+        else:
+            self.update_queries()
 
     def read_csv_file(self, file_path):
         data = []
@@ -15,6 +18,19 @@ class QueryGenerator:
             for row in csv_reader:
                 data.append(row)
         return data
+
+    def update_queries(self):
+        templates_path = "query_generation/templates/"
+        for row in self.data:
+            template_file = templates_path + "template_code_1.txt"
+            with open(template_file, 'r') as file:
+                template_content = file.read()
+                template = Template(template_content)
+                query = template.substitute(row)
+                rep_name = '_'.join(row['Repozitory_name'].split('/'))
+                file_name = f"../text_queries/{rep_name}_query_1.txt"
+                with open(file_name,  mode='a') as file:
+                    file.write(query)
 
     def generate_queries(self):
         for file_name in os.listdir('../text_queries'):

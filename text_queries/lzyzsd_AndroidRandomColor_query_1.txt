@@ -17,3 +17,101 @@ Comment lines count: 111
 Cyclomatic complexity: 4.0
 Commit comment lines count: 19
 Count of files with syntax errors: 0
+Average Cognitive Complexity of a Method: 4.0
+
+Number of Non-Static (Object) Attributes
+average: 0
+minimum: 1000000
+maximum: 1.625
+Number of Static Attributes
+average: 0
+minimum: 1000000
+maximum: 0.125
+Number of Class Constructors
+average: 0
+minimum: 1000000
+maximum: 1.125
+Number of Non-Static (Object) Methods
+average: 0
+minimum: 1000000
+maximum: 5.875
+Number of Static (Class) Methods
+average: 0
+minimum: 1000000
+maximum: 0.0
+Non-Commenting Source Statements (NCSS)
+average: 0
+minimum: 1000000
+maximum: 1.625
+Number of Implemented Interfaces
+average: 0
+minimum: 1000000
+maximum: 0.0
+Number of Ancestor (Parent) Classes
+average: 0
+minimum: 1000000
+maximum: 0.625
+Number of Type Parameters (Generics)
+average: 0
+minimum: 1000000
+maximum: 0.0
+Class is ``final'' (1) or not (0)
+average: 0
+minimum: 1000000
+maximum: 0.0
+Number of Class Annotations
+average: 0
+minimum: 1000000
+maximum: 0.0
+Average number of parts in variable names
+average: 0
+minimum: 1000000
+maximum: 1.1065476190476191
+Method Hiding Factor (MHF), which is the ratio of private and protected methods to total methods
+average: 0.0
+minimum: 1000000
+maximum: 0.19642857142857142
+Static Method Hiding Factor (MHF), which is the ratio of private and protected static methods to total static methods
+average: 0
+minimum: 1000000
+maximum: 0.0
+Attribute Hiding Factor (AHF), which is the ratio of private and protected attributes to total attributes
+average: 0.0
+minimum: 1000000
+maximum: 0.125
+Static Attribute Hiding Factor (SAHF), which is the ratio of private and protected static attributes to total static attributes
+average: 0
+minimum: 1000000
+maximum: 0.125
+Number of Method Parameters (NOMP), which is the count of all parameters in all methods in a class
+average: 0
+minimum: 1000000
+maximum: 7.0
+Number of Static Method Parameters (NOSMP), which is the count of all parameters in all static methods in a class
+average: 0
+minimum: 1000000
+maximum: 0.0
+Maximum of Method Parameters (MxNOMP), which is the largest amount of parameters in some method in a class
+average: 0
+minimum: 1000000
+maximum: 1.0
+Maximum of Static Method Parameters (MxNOSMP), which is the largest amount of parameters in some static method in a class
+average: 0
+minimum: 1000000
+maximum: 0.0
+Number of Overriding Methods (NOM), which is the number of methods with the \texttt{@Override} annotation
+average: 0
+minimum: 1000000
+maximum: 0.875
+Number of Polymorphic Methods (NOP), which is the count of methodsthat are overloaded at least once --- have similar names but different parameters
+average: 0
+minimum: 1000000
+maximum: 0.625
+Number of NULL References
+average: 0
+minimum: 1000000
+maximum: 1.625
+Data vs Object Encapsulation Ratio
+average: 0.0
+minimum: 1000000
+maximum: 0.20833333333333331

@@ -17,3 +17,4 @@ Comment lines count: $count_of_comment_lines
 Cyclomatic complexity: $cyclomatic_complexity
 Commit comment lines count: $count_of_commit_comment_lines
 Count of files with syntax errors: $syntax_errors
+Average Cognitive Complexity of a Method: $average_cc_method

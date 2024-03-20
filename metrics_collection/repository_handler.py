@@ -46,7 +46,7 @@ class RepozitoryHandler:
                              self.count_of_open_issues, self.count_of_closed_issue,
                              self.count_of_merged_pull_requests,
                              self.count_of_comment_lines, self.cyclomatic_complexity,
-                             self.count_of_commit_comment_lines, self.syntax_errors
+                             self.count_of_commit_comment_lines, self.syntax_errors, self.average_cc_method
                              ])
 
     def calculate_metrics(self):
@@ -221,7 +221,7 @@ class RepozitoryHandler:
 
         if total_methods > 0:
             average_cc_method = total_cc_methods / total_methods
-            average_cc_method
+            return average_cc_method
         else:
             return 0
 
