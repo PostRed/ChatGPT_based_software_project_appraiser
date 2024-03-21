@@ -8,7 +8,7 @@ from datetime import datetime
 from pycparser import parse_file
 from radon.complexity import cc_visit
 
-from metrics_collection.code_metrics import CodeMetrics
+from code_metrics import CodeMetrics
 
 
 class RepozitoryHandler:

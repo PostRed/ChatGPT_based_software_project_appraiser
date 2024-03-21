@@ -1,6 +1,6 @@
 import csv
 
-from metrics_collection.repository_handler_for_file import RepozitoryHandlerForFile
+from repository_handler_for_file import RepozitoryHandlerForFile
 from repository_handler import RepozitoryHandler
 from query_generation.query_generator import QueryGenerator
 import argparse
