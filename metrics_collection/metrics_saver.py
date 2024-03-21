@@ -5,8 +5,8 @@ from metrics_collection.repository_handler import RepozitoryHandler
 
 class MetricsSaver:
     def __init__(self):
-        self.files_name = 'files/metrics.csv'
-        with open('files/metrics.csv', mode='w', newline='') as file:
+        self.files_name = os.getcwd() + '/metrics_collection/files/metrics.csv'
+        with open(os.getcwd() + '/metrics_collection/files/metrics.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['Repozitory_name', 'total_lines', 'number_of_days_since_last_change', 'stars_count',
                              'count_of_contributors', 'forks_count',

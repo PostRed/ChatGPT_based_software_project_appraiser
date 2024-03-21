@@ -1,5 +1,6 @@
 import ast
 import csv
+import os
 
 import javalang
 import requests
@@ -38,7 +39,7 @@ class RepozitoryHandler:
         self.save_metrics()
 
     def save_metrics(self):
-        with open('files/metrics.csv', mode='a', newline='') as file:
+        with open(os.getcwd() + '/metrics_collection/files/metrics.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([self.repozitory_name, self.total_lines,
                              self.number_of_days_since_last_change,
@@ -52,37 +53,37 @@ class RepozitoryHandler:
     def calculate_metrics(self):
         if not self.info is None:
             self.number_of_days_since_last_change = self.get_number_of_days_since_last_change()
-            print(
-                f'repository = {self.repozitory_name}\t'
-                f'number_of_days_since_last_change = {self.number_of_days_since_last_change}')
+            # print(
+            #    f'repository = {self.repozitory_name}\t'
+            #    f'number_of_days_since_last_change = {self.number_of_days_since_last_change}')
             self.stars_count = self.get_stars_count()
-            print(f'repository = {self.repozitory_name}\tstars_count = {self.stars_count}')
+            # print(f'repository = {self.repozitory_name}\tstars_count = {self.stars_count}')
             self.count_of_contributors = self.get_count_of_contributors()
-            print(f'repository = {self.repozitory_name}\tcount_of_contributors = {self.count_of_contributors}')
+            # print(f'repository = {self.repozitory_name}\tcount_of_contributors = {self.count_of_contributors}')
             self.forks_count = self.get_forks_count()
-            print(f'repository = {self.repozitory_name}\tforks_count = {self.forks_count}')
+            # print(f'repository = {self.repozitory_name}\tforks_count = {self.forks_count}')
             self.count_of_open_issues = self.get_count_of_open_issues()
-            print(f'repository = {self.repozitory_name}\tcount_of_open_issues = {self.count_of_open_issues}')
+            # print(f'repository = {self.repozitory_name}\tcount_of_open_issues = {self.count_of_open_issues}')
             self.count_of_closed_issue = self.get_count_of_closed_issues()
-            print(f'repository = {self.repozitory_name}\tcount_of_closed_issue = {self.count_of_closed_issue}')
+            # print(f'repository = {self.repozitory_name}\tcount_of_closed_issue = {self.count_of_closed_issue}')
             self.count_of_merged_pull_requests = self.get_count_of_merged_pull_requests()
-            print(
-                f'repository = {self.repozitory_name}\t'
-                f'count_of_merged_pull_requests = {self.count_of_merged_pull_requests}')
+            # print(
+            #     f'repository = {self.repozitory_name}\t'
+            #     f'count_of_merged_pull_requests = {self.count_of_merged_pull_requests}')
 
             self.get_cyclomatic_complexity(f"{self.api_link}{self.repozitory_name}/contents/")
             if len(self.total_cc) > 0:
                 self.cyclomatic_complexity = sum(self.total_cc) / len(self.total_cc)
-            print(f'repository = {self.repozitory_name}\tcyclomatic_complexity = {self.cyclomatic_complexity}')
-            print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
-            print(f'repository = {self.repozitory_name}\tcount_of_comment_lines = {self.count_of_comment_lines}')
+            # print(f'repository = {self.repozitory_name}\tcyclomatic_complexity = {self.cyclomatic_complexity}')
+            # print(f'repository = {self.repozitory_name}\tcount_of_lines = {self.total_lines}')
+            # print(f'repository = {self.repozitory_name}\tcount_of_comment_lines = {self.count_of_comment_lines}')
             self.count_of_commit_comment_lines = self.get_count_of_commit_comment_lines()
-            print(
-                f'repository = {self.repozitory_name}\t'
-                f'count_of_commit_comment_lines = {self.count_of_commit_comment_lines}')
-            print(f'repository = {self.repozitory_name}\tsyntax_errors = {self.syntax_errors}')
+            # print(
+            #     f'repository = {self.repozitory_name}\t'
+            #     f'count_of_commit_comment_lines = {self.count_of_commit_comment_lines}')
+            # print(f'repository = {self.repozitory_name}\tsyntax_errors = {self.syntax_errors}')
             self.average_cc_method = self.calculate_average_cognitive_complexity()
-            print(f'repository = {self.repozitory_name}\taverage Cognitive Complexity of a Method: {self.average_cc_method}')
+            # print(f'repository = {self.repozitory_name}\taverage Cognitive Complexity of a Method: {self.average_cc_method}')
             if len(self.trees) != 0:
                 code_metrics = CodeMetrics(self.trees, self.repozitory_name)
 
