@@ -1,3 +1,5 @@
+import csv
+
 import xmltodict
 import json
 import os
@@ -43,19 +45,24 @@ def main():
 
     process = subprocess.Popen(command, shell=True)
     process.wait()
-
-    for filename in os.listdir('text_queries/'):
-        if filename == 'examples':
-            continue
-        predict_list = GptAppraiser(config, filename)
-        if len(predict_list) == 0:
-            print('Ошибка отправки запроса')
-        else:
-            ind = filename.find('_query')
-            filename = filename[:ind]
-            filename = filename.replace('_', '/')
-            print(f'Оценка для {filename} ChatGPT:')
-            print(sum(predict_list) / len(predict_list))
+    with open(os.getcwd() + '/result.csv', mode='w', newline='') as file:
+        print(file)
+        writer = csv.writer(file)
+        writer.writerow(['Repozitory_name', 'Quality_control'])
+        for filename in os.listdir('text_queries/'):
+            if filename == 'examples':
+                continue
+            predict_list = GptAppraiser(config, filename)
+            if len(predict_list) == 0:
+                print('Ошибка отправки запроса')
+            else:
+                ind = filename.find('_query')
+                filename = filename[:ind]
+                filename = filename.replace('_', '/')
+                res = sum(predict_list) / len(predict_list)
+                print(f'Оценка для {filename} ChatGPT:')
+                print(res)
+                writer.writerow([filename, res])
 
 
 if __name__ == '__main__':
