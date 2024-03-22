@@ -1,4 +1,5 @@
 import csv
+import os
 
 from repository_handler_for_file import RepozitoryHandlerForFile
 from repository_handler import RepozitoryHandler
@@ -7,7 +8,7 @@ import argparse
 
 
 if __name__ == '__main__':
-    with open('files/metrics.csv', mode='w', newline='') as file:
+    with open(os.getcwd() + '/metrics_collection/files/metrics.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Repozitory_name', 'total_lines', 'number_of_days_since_last_change', 'stars_count',
                          'count_of_contributors', 'forks_count',
@@ -15,7 +16,7 @@ if __name__ == '__main__':
                          'count_of_comment_lines',
                          'cyclomatic_complexity', 'count_of_commit_comment_lines', 'syntax_errors', 'average_cc_method'])
 
-    with open('files/java_metrics.csv', mode='w', newline='') as file:
+    with open(os.getcwd() + '/metrics_collection/files/java_metrics.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Repozitory_name', 'min_nooa', 'max_nooa', 'aver_nooa',
                             'min_nosa', 'max_nosa', 'aver_nosa',
@@ -54,6 +55,6 @@ if __name__ == '__main__':
         repositories = repozitory_handler_for_file.repozitories
     elif args.count_metrics_rep:
         repositories = [RepozitoryHandler(args.count_metrics_rep, args.username, args.token)]
-    QueryGenerator("files/metrics.csv")
-    QueryGenerator("files/java_metrics.csv")
+    QueryGenerator(os.getcwd() + "/metrics_collection/files/metrics.csv")
+    QueryGenerator(os.getcwd() + "/metrics_collection/files/java_metrics.csv")
 

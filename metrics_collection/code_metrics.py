@@ -1,4 +1,5 @@
 import csv
+import os
 
 import javalang
 
@@ -284,7 +285,7 @@ class CodeMetrics:
                 self.doer += doer
 
     def save_metrics(self):
-        with open('files/java_metrics.csv', mode='a', newline='') as file:
+        with open(os.getcwd() + '/metrics_collection/files/java_metrics.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([self.repozitory_name,
                              self.min_nooa, self.max_nooa, self.aver_nooa,
