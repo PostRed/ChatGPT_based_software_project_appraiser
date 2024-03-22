@@ -41,14 +41,22 @@ def main():
         count_metrics = f"--count_metrics_file {config['MetricsCollectionSettings']['count_metrics_file']}"
     command = f"python metrics_collection/app.py {count_metrics} --token {config['MetricsCollectionSettings']['token']} --username {config['MetricsCollectionSettings']['username']}"
 
-    #process = subprocess.Popen(command, shell=True)
-    #process.wait()
+    process = subprocess.Popen(command, shell=True)
+    process.wait()
 
     for filename in os.listdir('text_queries/'):
         if filename == 'examples':
             continue
         predict_list = GptAppraiser(config, filename)
-        print(sum(predict_list) / len(predict_list))
+        if len(predict_list) == 0:
+            print('Ошибка отправки запроса')
+        else:
+            ind = filename.find('_query')
+            filename = filename[:ind]
+            filename = filename.replace('_', '/')
+            print(f'Оценка для {filename} ChatGPT:')
+            print(sum(predict_list) / len(predict_list))
 
 
-main()
+if __name__ == '__main__':
+    main()

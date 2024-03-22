@@ -34,7 +34,7 @@ class QueryGenerator:
                         file.write(query)
 
     def generate_queries(self):
-        for file_name in os.getcwd() + '/text_queries':
+        for file_name in os.listdir(os.getcwd() + '/text_queries'):
             file_path = os.path.join( os.getcwd() + '/text_queries', file_name)
             if os.path.isfile(file_path):
                 os.remove(file_path)
