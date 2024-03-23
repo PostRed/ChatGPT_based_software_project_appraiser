@@ -6,8 +6,7 @@ from repository_handler import RepozitoryHandler
 from query_generation.query_generator import QueryGenerator
 import argparse
 
-
-if __name__ == '__main__':
+def create_metrics_files():
     with open(os.getcwd() + '/metrics_collection/files/metrics.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Repozitory_name', 'total_lines', 'number_of_days_since_last_change', 'stars_count',
@@ -43,6 +42,8 @@ if __name__ == '__main__':
                             'min_nulls', 'max_nulls', 'aver_nulls',
                             'min_doer', 'max_doer', 'aver_doer'])
 
+
+def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('--count_metrics_file', type=str, help='Укажите путь к файлу для подсчета метрик.')
     parser.add_argument('--count_metrics_rep', type=str, help='Укажите имя репозитория для подсчета метрик.')
@@ -57,4 +58,9 @@ if __name__ == '__main__':
         repositories = [RepozitoryHandler(args.count_metrics_rep, args.username, args.token)]
     QueryGenerator(os.getcwd() + "/metrics_collection/files/metrics.csv")
     QueryGenerator(os.getcwd() + "/metrics_collection/files/code_metrics.csv")
+
+
+if __name__ == '__main__':
+    create_metrics_files()
+    main()
 
