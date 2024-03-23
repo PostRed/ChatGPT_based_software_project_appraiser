@@ -16,7 +16,7 @@ if __name__ == '__main__':
                          'count_of_comment_lines',
                          'cyclomatic_complexity', 'count_of_commit_comment_lines', 'syntax_errors', 'average_cc_method'])
 
-    with open(os.getcwd() + '/metrics_collection/files/java_metrics.csv', mode='w', newline='') as file:
+    with open(os.getcwd() + '/metrics_collection/files/code_metrics.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Repozitory_name', 'min_nooa', 'max_nooa', 'aver_nooa',
                             'min_nosa', 'max_nosa', 'aver_nosa',
@@ -56,5 +56,5 @@ if __name__ == '__main__':
     elif args.count_metrics_rep:
         repositories = [RepozitoryHandler(args.count_metrics_rep, args.username, args.token)]
     QueryGenerator(os.getcwd() + "/metrics_collection/files/metrics.csv")
-    QueryGenerator(os.getcwd() + "/metrics_collection/files/java_metrics.csv")
+    QueryGenerator(os.getcwd() + "/metrics_collection/files/code_metrics.csv")
 
