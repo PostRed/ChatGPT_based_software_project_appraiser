@@ -1,25 +1,25 @@
 
-Number of Non-Static (Object) Attributes: average - $min_nooa, minimum - $max_nooa, maximum - $aver_nooa
-Number of Static Attributes: average - $min_nosa, minimum - $max_nosa, maximum - $aver_nosa
-Number of Class Constructors: average - $min_nocc, minimum - $max_nocc, maximum - $aver_nocc
-Number of Non-Static (Object) Methods: average - $min_noom, minimum - $max_noom, maximum - $aver_noom
-Number of Static (Class) Methods: average - $min_nocm, minimum - $max_nocm, maximum - $aver_nocm
-Non-Commenting Source Statements (NCSS): average - $min_ncss, minimum - $max_ncss, maximum - $aver_ncss
-Number of Implemented Interfaces: average - $min_noii, minimum - $max_noii, maximum - $aver_noii
-Number of Ancestor (Parent) Classes: average - $min_napc, minimum - $max_napc, maximum - $aver_napc
-Number of Type Parameters (Generics): average - $min_notp, minimum - $max_notp, maximum - $aver_notp
-Class is ``final'': average - $min_final, minimum - $max_final, maximum - $aver_final
-Number of Class Annotations: average - $min_noca, minimum - $max_noca, maximum - $aver_noca
-Average number of parts in variable names: average - $min_varcomp, minimum - $max_varcomp, maximum - $aver_varcomp
-Method Hiding Factor (MHF), which is the ratio of private and protected methods to total methods: average - $min_mhf, minimum - $max_mhf, maximum - $aver_mhf
-Static Method Hiding Factor (MHF), which is the ratio of private and protected static methods to total static methods: average - $min_smhf, minimum - $max_smhf, maximum - $aver_smhf
-Attribute Hiding Factor (AHF), which is the ratio of private and protected attributes to total attributes: average - $min_ahf, minimum - $max_ahf, maximum - $aver_ahf
-Static Attribute Hiding Factor (SAHF), which is the ratio of private and protected static attributes to total static attributes: average - $min_sahf, minimum - $max_sahf, maximum - $aver_sahf
-Number of Method Parameters (NOMP), which is the count of all parameters in all methods in a class: average - $min_nomp, minimum - $max_nomp, maximum - $aver_nomp
-Number of Static Method Parameters (NOSMP), which is the count of all parameters in all static methods in a class: average - $min_nosmp, minimum - $max_nosmp, maximum - $aver_nosmp
-Maximum of Method Parameters (MxNOMP), which is the largest amount of parameters in some method in a class: average - $min_mxnomp, minimum - $max_mxnomp, maximum - $aver_mxnomp
-Maximum of Static Method Parameters (MxNOSMP), which is the largest amount of parameters in some static method in a class: average - $min_mxnosmp, minimum - $max_mxnosmp, maximum - $aver_mxnosmp
-Number of Overriding Methods (NOM), which is the number of methods with the \texttt{@Override} annotation: average - $min_nom, minimum - $max_nom, maximum - $aver_nom
-Number of Polymorphic Methods (NOP), which is the count of methodsthat are overloaded at least once --- have similar names but different parameters: average - $min_nop, minimum - $max_nop, maximum - $aver_nop
-Number of NULL References: average - $min_nulls, minimum - $max_nulls, maximum - $aver_nulls
-Data vs Object Encapsulation Ratio: average - $min_doer, minimum - $max_doer, maximum - $aver_doer
+Number of Non-Static (Object) Attributes: average - $aver_nooa, minimum - $min_nooa, maximum - $max_nooa
+Number of Static Attributes: average - $aver_nosa, minimum - $min_nosa, maximum - $max_nosa
+Number of Class Constructors: average - $aver_nocc, minimum - $min_nocc, maximum - $max_nocc
+Number of Non-Static (Object) Methods: average - $aver_noom, minimum - $min_noom, maximum - $max_noom
+Number of Static (Class) Methods: average - $aver_nocm, minimum - $min_nocm, maximum - $max_nocm
+Non-Commenting Source Statements (NCSS): average - $aver_ncss, minimum - $min_ncss, maximum - $max_ncss
+Number of Implemented Interfaces: average - $aver_noii, minimum - $min_noii, maximum - $max_noii
+Number of Ancestor (Parent) Classes: average - $aver_napc, minimum - $min_napc, maximum - $max_napc
+Number of Type Parameters (Generics): average - $aver_notp, minimum - $min_notp, maximum - $max_notp
+Class is ``final'': average - $aver_final, minimum - $min_final, maximum - $max_final
+Number of Class Annotations: average - $aver_noca, minimum - $min_noca, maximum - $max_noca
+Average number of parts in variable names: average - $aver_varcomp, minimum - $min_varcomp, maximum - $max_varcomp
+Method Hiding Factor (MHF), which is the ratio of private and protected methods to total methods: average - $aver_mhf, minimum - $min_mhf, maximum - $max_mhf
+Static Method Hiding Factor (MHF), which is the ratio of private and protected static methods to total static methods: average - $aver_smhf, minimum - $min_smhf, maximum - $max_smhf
+Attribute Hiding Factor (AHF), which is the ratio of private and protected attributes to total attributes: average - $aver_ahf, minimum - $min_ahf, maximum - $max_ahf
+Static Attribute Hiding Factor (SAHF), which is the ratio of private and protected static attributes to total static attributes: average - $aver_sahf, minimum - $min_sahf, maximum - $max_sahf
+Number of Method Parameters (NOMP), which is the count of all parameters in all methods in a class: average - $aver_nomp, minimum - $min_nomp, maximum - $max_nomp
+Number of Static Method Parameters (NOSMP), which is the count of all parameters in all static methods in a class: average - $aver_nosmp, minimum - $min_nosmp, maximum - $max_nosmp
+Maximum of Method Parameters (MxNOMP), which is the largest amount of parameters in some method in a class: average - $aver_mxnomp, minimum - $min_mxnomp, maximum - $max_mxnomp
+Maximum of Static Method Parameters (MxNOSMP), which is the largest amount of parameters in some static method in a class: average - $aver_mxnosmp, minimum - $min_mxnosmp, maximum - $max_mxnosmp
+Number of Overriding Methods (NOM), which is the number of methods with the \texttt{@Override} annotation: average - $aver_nom, minimum - $min_nom, maximum - $max_nom
+Number of Polymorphic Methods (NOP), which is the count of methodsthat are overloaded at least once --- have similar names but different parameters: average - $aver_nop, minimum - $min_nop, maximum - $max_nop
+Number of NULL References: average - $aver_nulls, minimum - $min_nulls, maximum - $max_nulls
+Data vs Object Encapsulation Ratio: average - $aver_doer, minimum - $min_doer, maximum - $max_doer
