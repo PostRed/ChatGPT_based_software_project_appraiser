@@ -47,7 +47,6 @@ def main():
     process.wait()
     gpt_appraiser = GptAppraiser(config)
     with open(os.getcwd() + '/result.csv', mode='w', newline='') as file:
-        print(file)
         writer = csv.writer(file)
         writer.writerow(['Repozitory_name', 'Quality_control'])
         for filename in os.listdir('text_queries/'):

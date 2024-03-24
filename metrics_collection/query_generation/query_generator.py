@@ -6,7 +6,7 @@ from string import Template
 class QueryGenerator:
     def __init__(self, file_path: str):
         self.data = self.read_csv_file(file_path)
-        if 'java' not in file_path:
+        if 'code' not in file_path:
             self.generate_queries()
         else:
             self.update_queries()
