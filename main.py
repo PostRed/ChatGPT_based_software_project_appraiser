@@ -5,7 +5,7 @@ import json
 import os
 import subprocess
 
-from GptAppraiser.app import GptAppraiser
+from GptAppraiser.GptAppraiser import GptAppraiser
 
 def readConfrg():
     with open('settings.conf') as settings:
@@ -45,6 +45,7 @@ def main():
 
     process = subprocess.Popen(command, shell=True)
     process.wait()
+    gpt_appraiser = GptAppraiser(config)
     with open(os.getcwd() + '/result.csv', mode='w', newline='') as file:
         print(file)
         writer = csv.writer(file)
@@ -52,7 +53,8 @@ def main():
         for filename in os.listdir('text_queries/'):
             if filename == 'examples':
                 continue
-            predict_list = GptAppraiser(config, filename)
+
+            predict_list = gpt_appraiser.predict(filename)
             if len(predict_list) == 0:
                 print('Ошибка отправки запроса')
             else:
